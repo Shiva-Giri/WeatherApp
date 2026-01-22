@@ -11,17 +11,16 @@ class WeatherRepositoryImpl(
     private val mapper: WeatherMapper
 ) : WeatherRepository {
 
-    override suspend fun getCurrentWeather(): Result<CurrentWeather> {
-        return runCatching {
-            val response = api.getForecast()
-            mapper.mapToCurrentWeather(response)
-        }
-    }
+    override suspend fun getWeather():
+            Result<Pair<CurrentWeather, List<HourlyForecast>>> {
 
-    override suspend fun getHourlyForecast(): Result<List<HourlyForecast>> {
         return runCatching {
             val response = api.getForecast()
-            mapper.mapToHourlyForecasts(response)
+
+            val current = mapper.mapToCurrentWeather(response)
+            val hourly = mapper.mapToHourlyForecasts(response)
+
+            current to hourly
         }
     }
 }

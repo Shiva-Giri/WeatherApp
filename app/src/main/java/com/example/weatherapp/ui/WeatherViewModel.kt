@@ -22,19 +22,19 @@ class WeatherViewModel (
         _uiState.value = WeatherUiState.Loading
 
         viewModelScope.launch {
-            val currentResult = repository.getCurrentWeather()
-            val hourlyResult = repository.getHourlyForecast()
-
-            if (currentResult.isSuccess && hourlyResult.isSuccess) {
-                _uiState.value = WeatherUiState.Success(
-                    currentWeather = currentResult.getOrThrow(),
-                    hourlyForecasts = hourlyResult.getOrThrow()
-                )
-            } else {
-                _uiState.value = WeatherUiState.Error(
-                    message = "Unable to load weather data. Please try again."
-                )
-            }
+            repository.getWeather()
+                .onSuccess { (current, hourly) ->
+                    _uiState.value = WeatherUiState.Success(
+                        currentWeather = current,
+                        hourlyForecasts = hourly
+                    )
+                }
+                .onFailure {
+                    _uiState.value = WeatherUiState.Error(
+                        "Unable to load weather data. Please try again."
+                    )
+                }
         }
+
     }
 }

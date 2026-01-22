@@ -34,14 +34,11 @@ renders Loading, Success, or Error states.
 - A retry button allows re-fetching data
 - The app does not crash when offline
 
-## Assumptions
+## Notes
 - Time is displayed in 24-hour format (HH:mm)
 - Weather data is based on hourly index 0 as "current"
 - Metric units are used
 
-## Possible Improvements
-- Caching with Room
-- Location selection
-- UI theming
+
 
 

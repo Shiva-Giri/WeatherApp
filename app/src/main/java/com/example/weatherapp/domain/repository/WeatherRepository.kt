@@ -5,7 +5,6 @@ import com.example.weatherapp.domain.model.HourlyForecast
 
 interface WeatherRepository {
 
-    suspend fun getCurrentWeather(): Result<CurrentWeather>
-
-    suspend fun getHourlyForecast(): Result<List<HourlyForecast>>
+    suspend fun getWeather():
+            Result<Pair<CurrentWeather, List<HourlyForecast>>>
 }
