@@ -40,5 +40,3 @@ renders Loading, Success, or Error states.
 - Metric units are used
 
 
-
-
