@@ -5,11 +5,9 @@ import com.example.weatherapp.domain.model.CurrentWeather
 import com.example.weatherapp.domain.model.HourlyForecast
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import kotlin.math.min
 
 class WeatherMapper {
 
-    private val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
 
     fun mapToCurrentWeather(dto: WeatherResponseDto): CurrentWeather {
 //        val hourly = dto.hourly
