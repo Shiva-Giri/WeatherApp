@@ -10,6 +10,10 @@ interface OpenMeteoApi {
     suspend fun getForecast(
         @Query("latitude") latitude: Double = 52.52,
         @Query("longitude") longitude: Double = 13.41,
+
+        @Query("current") current: String =
+            "temperature_2m,weathercode,wind_speed_10m",
+
         @Query("hourly") hourly: String =
             "temperature_2m,weathercode,relative_humidity_2m,wind_speed_10m"
     ): WeatherResponseDto
